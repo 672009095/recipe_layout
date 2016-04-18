@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
     ActionBarDrawerToggle mDrawerToogle;
     TabLayout tabLayout ;
     ViewPager viewPager;
+    private int[] tabIcons = {
+            R.drawable.world,R.drawable.local
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout)findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+        setupTabIcons();
     }
 
     @Override
@@ -120,8 +124,12 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager){
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new WorldRecipe(),"World");
-        adapter.addFragment(new LocalRecipe(),"Local");
+        adapter.addFragment(new LocalRecipe(), "Local");
         viewPager.setAdapter(adapter);
+    }
+    private void setupTabIcons(){
+        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
+        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
     }
     class ViewPagerAdapter extends FragmentPagerAdapter{
         private final List<Fragment>mFragmentList = new ArrayList<>();
