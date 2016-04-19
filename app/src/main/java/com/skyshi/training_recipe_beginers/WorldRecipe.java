@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.skyshi.training_recipe_beginers.Database.DatabaseHandler;
 import com.skyshi.training_recipe_beginers.World.WorldObject;
 import com.skyshi.training_recipe_beginers.World.WorldRecipeAdapter;
 
@@ -34,14 +35,17 @@ public class WorldRecipe extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_worl_recipe,container,false);
+
+        DatabaseHandler dbHandler = new DatabaseHandler(getActivity().getBaseContext());
         rv_world_recipe = (RecyclerView)root.findViewById(R.id.rv_world_recipe);
         rv_world_recipe.setHasFixedSize(true);
 
         llm_manager = new LinearLayoutManager(getActivity().getBaseContext());
         rv_world_recipe.setLayoutManager(llm_manager);
         for (int i = 0; i <20 ; i++) {
-            worldObjectList.add(new WorldObject(1, "bulu babi bakar", "fast food", "bulu babi", "wajan", "dibakar", "10000", "japan"));
+            dbHandler.addWorldRecipe(new WorldObject(1, "bulu babi bakar", "fast food", "bulu babi","bawang", "wajan", "dibakar", "10000", "japan",""));
         }
+        worldObjectList = dbHandler.getAllWorldRecipe();
         //worldObjectList.add(new WorldObject(2, "babi bakar", "fast food", "bulu babi", "wajan", "dibakar", "10000", "japan"));
         //worldObjectList.add(new WorldObject(3, "sapi panggang", "fast food", "bulu babi", "wajan", "digoreng", "10000", "china"));
         wra = new WorldRecipeAdapter(worldObjectList);

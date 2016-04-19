@@ -7,21 +7,27 @@ public class WorldObject {
     private int id;
     private String name_food;
     private String type;
+    private String main_ingredients;
     private String ingredients;
     private String tools;
     private String step;
     private String price;
     private String original_place;
-    public WorldObject(int id,String name_food,String type,String ingredients,
-                       String tools,String step,String price,String original_place){
+    private String image_name;
+    public WorldObject(){}
+    public WorldObject(int id,String name_food,String type,String main_ingredients,String ingredients,
+                       String tools,String step,String price,String original_place,
+                        String image_name){
         this.setId(id);
         this.setName_food(name_food);
         this.setType(type);
+        this.setMain_ingredients(main_ingredients);
         this.setIngredients(ingredients);
         this.setTools(tools);
         this.setStep(step);
         this.setPrice(price);
         this.setOriginal_place(original_place);
+        this.setImage_name(image_name);
     }
 
     public int getId() {
@@ -86,5 +92,21 @@ public class WorldObject {
 
     public void setOriginal_place(String original_place) {
         this.original_place = original_place;
+    }
+
+    public String getImage_name() {
+        return image_name;
+    }
+
+    public void setImage_name(String image_name) {
+        this.image_name = image_name;
+    }
+
+    public String getMain_ingredients() {
+        return main_ingredients;
+    }
+
+    public void setMain_ingredients(String main_ingredients) {
+        this.main_ingredients = main_ingredients;
     }
 }

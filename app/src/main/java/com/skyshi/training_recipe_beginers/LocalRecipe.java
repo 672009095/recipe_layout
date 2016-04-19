@@ -41,7 +41,7 @@ public class LocalRecipe extends Fragment {
         rv_local_recipe.setLayoutManager(llm_manager);
 
         for (int i = 0; i <20 ; i++) {
-            localObjectList.add(new LocalObject(3, "sapi panggang", "fast food", "bulu babi", "wajan", "digoreng", "10000", "china"));
+            localObjectList.add(new LocalObject(3, "sapi panggang", "fast food", "bulu babi","bawang", "wajan", "digoreng", "10000", "china",""));
         }
 
         lra = new LocalRecipeAdapter(localObjectList);
