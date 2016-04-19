@@ -1,7 +1,9 @@
 package com.skyshi.training_recipe_beginers;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -36,6 +38,17 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        if (fab != null) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent create = new Intent(MainActivity.this,InputNewRecipe.class);
+                    startActivity(create);
+                }
+            });
+        }
 
         mDrawerLayout = (DrawerLayout)findViewById(R.id.mDrawer);
         rel_main = (RelativeLayout)findViewById(R.id.rel_mainCenter);

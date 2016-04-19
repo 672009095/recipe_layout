@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">Training_Recipe_beginers</string>
     <string name="action_settings">Settings</string>
+    <string name="hint_name_recipe">Insert recipe name</string>
+    <string name="local">Local</string>
+    <string name="world">World</string>
+    <string name="appetizer">Appetizer</string>
+    <string name="maincourse">Main course</string>
+    <string name="dessert">Dessert</string>
+    <string name="hint_main_ingredient">insert use component below</string>
+    <string name="hint_step">input step</string>
+    <string name="hint_price">input price</string>
+    <string name="hint_place">input place resource recipe</string>
 </resources>
