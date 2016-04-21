@@ -151,6 +151,9 @@ public class InputNewRecipe extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 typeRecipe = appetizer+","+maincourse+","+dessert;
+                if(typeRecipe.substring(typeRecipe.length()-1).equalsIgnoreCase(",")) {
+                    typeRecipe = typeRecipe.substring(0, typeRecipe.length() - 1);
+                }
                 Log.d("tesInput","name recipe : "+nameRecipe.getText().toString());
                 Log.d("tesInput","name category : "+category);
                 Log.d("tesInput","name type : "+typeRecipe);

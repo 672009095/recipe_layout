@@ -39,11 +39,11 @@ public class LocalRecipe extends Fragment {
 
         llm_manager = new LinearLayoutManager(getActivity().getBaseContext());
         rv_local_recipe.setLayoutManager(llm_manager);
-
-        for (int i = 0; i <20 ; i++) {
-            localObjectList.add(new LocalObject(3, "sapi panggang", "fast food", "bulu babi","bawang", "wajan", "digoreng", "10000", "china",""));
+        if(localObjectList.size()==0) {
+            for (int i = 0; i < 20; i++) {
+                localObjectList.add(new LocalObject(3, "sapi panggang", "fast food", "bulu babi", "bawang", "wajan", "digoreng", "10000", "china", ""));
+            }
         }
-
         lra = new LocalRecipeAdapter(localObjectList);
         rv_local_recipe.setAdapter(lra);
         return view;

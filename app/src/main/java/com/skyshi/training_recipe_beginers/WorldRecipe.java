@@ -42,8 +42,10 @@ public class WorldRecipe extends Fragment {
 
         llm_manager = new LinearLayoutManager(getActivity().getBaseContext());
         rv_world_recipe.setLayoutManager(llm_manager);
-        for (int i = 0; i <20 ; i++) {
-            dbHandler.addWorldRecipe(new WorldObject(1, "bulu babi bakar", "fast food", "bulu babi","bawang", "wajan", "dibakar", "10000", "japan",""));
+        if(dbHandler.getAllWorldRecipe().size()==0) {
+            for (int i = 0; i < 20; i++) {
+                dbHandler.addWorldRecipe(new WorldObject(1, "bulu babi bakar", "fast food", "bulu babi", "bawang", "wajan", "dibakar", "10000", "japan", ""));
+            }
         }
         worldObjectList = dbHandler.getAllWorldRecipe();
         //worldObjectList.add(new WorldObject(2, "babi bakar", "fast food", "bulu babi", "wajan", "dibakar", "10000", "japan"));
