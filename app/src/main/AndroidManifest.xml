@@ -18,7 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.skyshi.training_recipe_beginers.InputNewRecipe"/>
+        <activity
+            android:name="com.skyshi.training_recipe_beginers.InputNewRecipe"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

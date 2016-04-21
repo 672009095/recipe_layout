@@ -10,5 +10,6 @@
     <string name="hint_main_ingredient">insert use component below</string>
     <string name="hint_step">input step</string>
     <string name="hint_price">input price</string>
+    <string name="submit_recipe">Submit</string>
     <string name="hint_place">input place resource recipe</string>
 </resources>

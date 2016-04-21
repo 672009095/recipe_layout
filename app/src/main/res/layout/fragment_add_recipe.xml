@@ -9,131 +9,25 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.skyshi.training_recipe_beginers.InputNewRecipe"
     tools:showIn="@layout/activity_add_recipe">
+
     <ScrollView
+        android:id="@+id/scroll_input"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <TextView
-                style="@style/TextHeader"
-                android:text="Recipe name"/>
-                <EditText
-                    android:id="@+id/edit_name_recipe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_name_recipe"/>
-            <TextView
-                style="@style/TextHeader"
-                android:text="Category"/>
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="2"
-                    android:orientation="horizontal">
-                    <RadioButton
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/radio_world"
-                        android:text="@string/world"/>
-                    <RadioButton
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="@string/local"
-                        android:id="@+id/radio_local"/>
-                </RadioGroup>
-            <TextView
-                style="@style/TextHeader"
-                android:text="Type recipe"/>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <CheckBox
-                        android:id="@+id/check_appetizer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/appetizer"/>
-                    <CheckBox
-                        android:id="@+id/check_maincourse"
-                        android:layout_below="@+id/check_appetizer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/maincourse"/>
-                    <CheckBox
-                        android:id="@+id/check_dessert"
-                        android:layout_toRightOf="@+id/check_appetizer"
-                        android:layout_marginLeft="100dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/dessert"/>
-                </RelativeLayout>
-            <TextView
-                style="@style/TextHeader"
-                android:text="Main ingredients"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_main_ingredient"/>
-                <Spinner
-                    android:id="@+id/spinner_main_ingredients"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </Spinner>
-            <TextView
-                style="@style/TextHeader"
-                android:text="Ingredients"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_main_ingredient"/>
-                <Spinner
-                    android:id="@+id/spinner_ingredients"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </Spinner>
-            <TextView
-                style="@style/TextHeader"
-                android:text="Tools"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_main_ingredient"/>
-                <Spinner
-                    android:id="@+id/spinner_tools"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </Spinner>
-            <TextView
-                style="@style/TextHeader"
-                android:text="Step"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_step"/>
-            <TextView
-                style="@style/TextHeader"
-                android:text="Price"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_price"/>
-            <TextView
-                style="@style/TextHeader"
-                android:text="Place"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_place"/>
-            <TextView
-                style="@style/TextHeader"
-                android:text="Picture"/>
-                <ImageView
-                    android:id="@+id/img_recipe_photo"
-                    android:layout_width="250dp"
-                    android:layout_height="250dp" />
+                <include layout="@layout/input_new_recipename"/>
+                <include layout="@layout/input_new_kategory"/>
+                <include layout="@layout/input_new_type"/>
+                <include layout="@layout/input_new_mainingredients"/>
+                <include layout="@layout/input_new_ingredients"/>
+                <include layout="@layout/input_new_tools"/>
+                <include layout="@layout/input_new_step"/>
+                <include layout="@layout/input_new_price"/>
+                <include layout="@layout/input_new_place"/>
+                <include layout="@layout/input_new_image"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

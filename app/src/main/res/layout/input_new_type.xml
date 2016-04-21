@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        style="@style/TextHeader"
+        android:text="Type recipe"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <CheckBox
+            android:id="@+id/check_appetizer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/appetizer"/>
+        <CheckBox
+            android:id="@+id/check_maincourse"
+            android:layout_below="@+id/check_appetizer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/maincourse"/>
+        <CheckBox
+            android:id="@+id/check_dessert"
+            android:layout_toRightOf="@+id/check_appetizer"
+            android:layout_marginLeft="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dessert"/>
+    </RelativeLayout>
+</LinearLayout>

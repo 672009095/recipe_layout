@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_main_ingredients">
+        <item>Select Main Item</item>
+        <item>Fish</item>
+        <item>Tuna</item>
+        <item>Lamb</item>
+        <item>Chicken</item>
+        <item>Beff</item>
+        <item>Duck</item>
+        <item>Crab</item>
+        <item>Lobster</item>
+        <item>Rice</item>
+    </string-array>
+    <string-array name="array_ingredients">
+        <item>Select Main Ingredients</item>
+        <item>Soy Sauce</item>
+        <item>Vinnegar</item>
+        <item>Garlic</item>
+        <item>Onion</item>
+        <item>Oil</item>
+        <item>Water</item>
+        <item>Ginger</item>
+        <item>Chili Sauce</item>
+        <item>Mayonaise</item>
+        <item>Salt</item>
+        <item>Sugar</item>
+    </string-array>
+    <string-array name="array_tools">
+        <item>Select Tools</item>
+        <item>Bowl</item>
+        <item>Knife</item>
+        <item>Frying Pan</item>
+        <item>Spatula</item>
+        <item>Spoon</item>
+        <item>Fork</item>
+        <item>Oven</item>
+        <item>Bread Knife</item>
+    </string-array>
+</resources>
