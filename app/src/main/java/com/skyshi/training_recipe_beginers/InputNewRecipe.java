@@ -1,9 +1,10 @@
 package com.skyshi.training_recipe_beginers;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -31,6 +32,7 @@ public class InputNewRecipe extends AppCompatActivity{
     Spinner spinner_mainIngredients,spinner_ingredients,spinner_tools;
     ArrayAdapter<CharSequence> adapterMainIngredient,adapterIngredient,adapterTools;
     FloatingActionButton fab_input_recipe;
+    private static final int CODE_ADD = 90;
     List<String> listMainIngredient = new ArrayList<>();
     List<String> listIngredients = new ArrayList<>();
     List<String> listTools = new ArrayList<>();
@@ -41,21 +43,17 @@ public class InputNewRecipe extends AppCompatActivity{
         setContentView(R.layout.activity_add_recipe);
         nameRecipe = (EditText)findViewById(R.id.edit_name_recipe);
         editText_mainIngredients = (EditText)findViewById(R.id.edit_mainIngredients);
+        editText_mainIngredients.setEnabled(false);
         editText_ingredients = (EditText)findViewById(R.id.edit_ingredients);
+        editText_ingredients.setEnabled(false);
         editText_tools = (EditText)findViewById(R.id.edit_tools);
+        editText_tools.setEnabled(false);
         editText_step = (EditText)findViewById(R.id.edit_step);
         editText_price = (EditText)findViewById(R.id.edit_price);
         editText_place = (EditText)findViewById(R.id.edit_place);
         img_recipe_photo = (ImageView)findViewById(R.id.img_recipe_photo);
 
         radioGroup = (RadioGroup)findViewById(R.id.radio_group);
-        int selectedCategory = radioGroup.getCheckedRadioButtonId();
-        radioButton = (RadioButton)findViewById(selectedCategory);
-        if(radioButton.getText().toString().equalsIgnoreCase("World")){
-            category = radioButton.getText().toString();
-        }else{
-            category = radioButton.getText().toString();
-        }
 
         checkBoxAppetizer = (CheckBox)findViewById(R.id.check_appetizer);
         checkBoxAppetizer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -150,21 +148,52 @@ public class InputNewRecipe extends AppCompatActivity{
         fab_input_recipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                typeRecipe = appetizer+","+maincourse+","+dessert;
-                if(typeRecipe.substring(typeRecipe.length()-1).equalsIgnoreCase(",")) {
+                typeRecipe = appetizer+" "+maincourse+" "+dessert;
+                if(typeRecipe.substring(typeRecipe.length()-1).equalsIgnoreCase(" ")) {
                     typeRecipe = typeRecipe.substring(0, typeRecipe.length() - 1);
                 }
-                Log.d("tesInput","name recipe : "+nameRecipe.getText().toString());
-                Log.d("tesInput","name category : "+category);
-                Log.d("tesInput","name type : "+typeRecipe);
-                Log.d("tesInput","main ingredient : "+editText_mainIngredients.getText().toString());
-                Log.d("tesInput","ingredient :"+editText_ingredients.getText().toString());
-                Log.d("tesInput","tools : "+editText_tools.getText().toString());
-                Log.d("tesInput","step : "+editText_step.getText().toString());
-                Log.d("tesInput","price : "+editText_price.getText().toString());
-                Log.d("tesInput","plcae : "+editText_place.getText().toString());
+                int selectedCategory = radioGroup.getCheckedRadioButtonId();
+                radioButton = (RadioButton)findViewById(selectedCategory);
+                if(radioButton.getText().toString().equalsIgnoreCase("World")){
+                    category = radioButton.getText().toString();
+                }else{
+                    category = radioButton.getText().toString();
+                }
+                Intent intent= new Intent();
+                intent.putExtra("namerecipe", nameRecipe.getText().toString());
+                intent.putExtra("category", category);
+                intent.putExtra("type", typeRecipe);
+                intent.putExtra("mainingredient", editText_mainIngredients.getText().toString().trim());
+                intent.putExtra("ingredient", editText_ingredients.getText().toString().trim());
+                intent.putExtra("tools", editText_tools.getText().toString().trim());
+                intent.putExtra("step", editText_step.getText().toString());
+                intent.putExtra("price", editText_price.getText().toString());
+                intent.putExtra("place", editText_place.getText().toString());
+                setResult(Activity.RESULT_OK, intent);
+                finish();
+
             }
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        typeRecipe = appetizer+" "+maincourse+" "+dessert;
+        if(typeRecipe.substring(typeRecipe.length()-1).equalsIgnoreCase(" ")) {
+            typeRecipe = typeRecipe.substring(0, typeRecipe.length() - 1);
+        }
+        Intent intent= new Intent();
+        intent.putExtra("namerecipe",nameRecipe.getText().toString());
+        intent.putExtra("category",category);
+        intent.putExtra("type",typeRecipe);
+        intent.putExtra("mainingredient",editText_mainIngredients.getText().toString().trim());
+        intent.putExtra("ingredient",editText_ingredients.getText().toString().trim());
+        intent.putExtra("tools",editText_tools.getText().toString().trim());
+        intent.putExtra("step",editText_step.getText().toString());
+        intent.putExtra("price",editText_price.getText().toString());
+        intent.putExtra("place",editText_place.getText().toString());
+        setResult(CODE_ADD,intent);
+        finish();
+    }
 }

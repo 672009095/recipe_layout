@@ -1,5 +1,6 @@
 package com.skyshi.training_recipe_beginers;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -18,6 +19,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.skyshi.training_recipe_beginers.Database.DatabaseHandler;
+import com.skyshi.training_recipe_beginers.Local.LocalObject;
+import com.skyshi.training_recipe_beginers.World.WorldObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,9 +32,12 @@ public class MainActivity extends AppCompatActivity {
     ActionBarDrawerToggle mDrawerToogle;
     TabLayout tabLayout ;
     ViewPager viewPager;
+    private static final int CODE_ADD = 90;
     private int[] tabIcons = {
             R.drawable.world,R.drawable.local
     };
+    LocalRecipe localRecipeFragment;
+    WorldRecipe worldRecipeFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Intent create = new Intent(MainActivity.this,InputNewRecipe.class);
-                    startActivity(create);
+                    startActivityForResult(create,CODE_ADD);
                 }
             });
         }
@@ -144,6 +152,46 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == CODE_ADD){
+            if(resultCode == Activity.RESULT_OK){
+                DatabaseHandler db = new DatabaseHandler(this);
+                if(data.getStringExtra("category").equalsIgnoreCase("world")) {
+                    db.addWorldRecipe(new WorldObject(
+                        0,
+                        data.getStringExtra("namerecipe"),
+                        data.getStringExtra("type"),
+                        data.getStringExtra("mainingredient"),
+                        data.getStringExtra("ingredients"),
+                        data.getStringExtra("tools"),
+                        data.getStringExtra("step"),
+                        data.getStringExtra("price"),
+                        data.getStringExtra("place"),
+                        ""
+                    ));
+                    worldRecipeFragment.refreshListWorld();
+                }else{
+                    db.addLocalRecipe(new LocalObject(
+                        0,
+                        data.getStringExtra("namerecipe"),
+                        data.getStringExtra("type"),
+                        data.getStringExtra("mainingredient"),
+                        data.getStringExtra("ingredients"),
+                        data.getStringExtra("tools"),
+                        data.getStringExtra("step"),
+                        data.getStringExtra("price"),
+                        data.getStringExtra("place"),
+                        ""
+                    ));
+                    localRecipeFragment.refreshListLocal();
+                }
+            }else{
+                return;
+            }
+        }
+    }
     class ViewPagerAdapter extends FragmentPagerAdapter{
         private final List<Fragment>mFragmentList = new ArrayList<>();
         private final List<String>mFragmentTitleList = new ArrayList<>();
@@ -153,7 +201,15 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return mFragmentList.get(position);
+            switch (position){
+                case 0:
+                    worldRecipeFragment = new WorldRecipe();
+                    return worldRecipeFragment;
+                case 1:
+                    localRecipeFragment = new LocalRecipe();
+                    return localRecipeFragment;
+            }
+            return null;
         }
 
         @Override
@@ -170,4 +226,5 @@ public class MainActivity extends AppCompatActivity {
             return mFragmentTitleList.get(position);
         }
     }
+
 }

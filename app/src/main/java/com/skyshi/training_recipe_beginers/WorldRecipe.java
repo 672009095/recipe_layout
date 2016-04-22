@@ -24,6 +24,7 @@ public class WorldRecipe extends Fragment {
     LinearLayoutManager llm_manager;
     WorldRecipeAdapter wra;
     List<WorldObject> worldObjectList= new ArrayList<>();
+    DatabaseHandler dbHandler;
     public WorldRecipe(){}
 
     @Override
@@ -35,23 +36,28 @@ public class WorldRecipe extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_worl_recipe,container,false);
-
-        DatabaseHandler dbHandler = new DatabaseHandler(getActivity().getBaseContext());
+        dbHandler = new DatabaseHandler(getActivity().getBaseContext());
         rv_world_recipe = (RecyclerView)root.findViewById(R.id.rv_world_recipe);
         rv_world_recipe.setHasFixedSize(true);
 
         llm_manager = new LinearLayoutManager(getActivity().getBaseContext());
         rv_world_recipe.setLayoutManager(llm_manager);
-        if(dbHandler.getAllWorldRecipe().size()==0) {
+        /*if(dbHandler.getAllWorldRecipe().size()==0) {
             for (int i = 0; i < 20; i++) {
                 dbHandler.addWorldRecipe(new WorldObject(1, "bulu babi bakar", "fast food", "bulu babi", "bawang", "wajan", "dibakar", "10000", "japan", ""));
             }
-        }
+        }*/
+
         worldObjectList = dbHandler.getAllWorldRecipe();
-        //worldObjectList.add(new WorldObject(2, "babi bakar", "fast food", "bulu babi", "wajan", "dibakar", "10000", "japan"));
-        //worldObjectList.add(new WorldObject(3, "sapi panggang", "fast food", "bulu babi", "wajan", "digoreng", "10000", "china"));
         wra = new WorldRecipeAdapter(worldObjectList);
         rv_world_recipe.setAdapter(wra);
         return root;
     }
+    public void refreshListWorld(){
+        worldObjectList.clear();
+        worldObjectList = dbHandler.getAllWorldRecipe();
+        wra = new WorldRecipeAdapter(worldObjectList);
+        rv_world_recipe.setAdapter(wra);
+    }
+
 }
