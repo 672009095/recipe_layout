@@ -179,21 +179,5 @@ public class InputNewRecipe extends AppCompatActivity{
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        typeRecipe = appetizer+" "+maincourse+" "+dessert;
-        if(typeRecipe.substring(typeRecipe.length()-1).equalsIgnoreCase(" ")) {
-            typeRecipe = typeRecipe.substring(0, typeRecipe.length() - 1);
-        }
-        Intent intent= new Intent();
-        intent.putExtra("namerecipe",nameRecipe.getText().toString());
-        intent.putExtra("category",category);
-        intent.putExtra("type",typeRecipe);
-        intent.putExtra("mainingredient",editText_mainIngredients.getText().toString().trim());
-        intent.putExtra("ingredient",editText_ingredients.getText().toString().trim());
-        intent.putExtra("tools",editText_tools.getText().toString().trim());
-        intent.putExtra("step",editText_step.getText().toString());
-        intent.putExtra("price",editText_price.getText().toString());
-        intent.putExtra("place",editText_place.getText().toString());
-        setResult(CODE_ADD,intent);
-        finish();
     }
 }
