@@ -49,14 +49,14 @@ public class WorldRecipe extends Fragment {
         }*/
 
         worldObjectList = dbHandler.getAllWorldRecipe();
-        wra = new WorldRecipeAdapter(worldObjectList);
+        wra = new WorldRecipeAdapter(worldObjectList,getActivity());
         rv_world_recipe.setAdapter(wra);
         return root;
     }
     public void refreshListWorld(){
         worldObjectList.clear();
         worldObjectList = dbHandler.getAllWorldRecipe();
-        wra = new WorldRecipeAdapter(worldObjectList);
+        wra = new WorldRecipeAdapter(worldObjectList,getActivity());
         rv_world_recipe.setAdapter(wra);
     }
 
