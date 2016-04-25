@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include layout="@layout/view_recipe_header"/>
+    <TextView
+        style="@style/TextHeaderViewRecipe"
+        android:text="Type"/>
+        <TextView
+            android:id="@+id/txt_view_type"
+            android:textSize="8pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    <TextView
+        style="@style/TextHeaderViewRecipe"
+        android:text="price"/>
+        <TextView
+            android:id="@+id/txt_view_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    <TextView
+        style="@style/TextHeaderViewRecipe"
+        android:text="place"/>
+        <TextView
+            android:id="@+id/txt_view_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    <TextView
+        style="@style/TextHeaderViewRecipe"
+        android:text="main ingredients"/>
+        <TextView
+            android:id="@+id/txt_view_mainingredients"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    <TextView
+        style="@style/TextHeaderViewRecipe"
+        android:text="ingredients"/>
+        <TextView
+            android:id="@+id/txt_view_ingredients"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    <TextView
+        style="@style/TextHeaderViewRecipe"
+        android:text="Tools"/>
+        <TextView
+            android:id="@+id/txt_view_tools"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    <TextView
+        style="@style/TextHeaderViewRecipe"
+        android:text="step"/>
+        <TextView
+            android:id="@+id/txt_view_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+</LinearLayout>
