@@ -10,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.skyshi.training_recipe_beginers.Database.DatabaseHandler;
-import com.skyshi.training_recipe_beginers.Local.LocalObject;
-import com.skyshi.training_recipe_beginers.Local.LocalRecipeAdapter;
 import com.skyshi.training_recipe_beginers.R;
 
 import java.util.ArrayList;

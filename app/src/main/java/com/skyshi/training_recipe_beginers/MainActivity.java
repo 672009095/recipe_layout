@@ -21,7 +21,9 @@ import android.widget.RelativeLayout;
 
 import com.skyshi.training_recipe_beginers.Database.DatabaseHandler;
 import com.skyshi.training_recipe_beginers.Local.LocalObject;
+import com.skyshi.training_recipe_beginers.Local.LocalRecipe;
 import com.skyshi.training_recipe_beginers.World.WorldObject;
+import com.skyshi.training_recipe_beginers.World.WorldRecipe;
 
 import java.util.ArrayList;
 import java.util.List;

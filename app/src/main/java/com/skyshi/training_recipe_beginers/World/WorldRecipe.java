@@ -14,8 +14,6 @@ import com.skyshi.training_recipe_beginers.Database.DatabaseHandler;
 import com.skyshi.training_recipe_beginers.ItemClickListener;
 import com.skyshi.training_recipe_beginers.R;
 import com.skyshi.training_recipe_beginers.ViewRecipe;
-import com.skyshi.training_recipe_beginers.World.WorldObject;
-import com.skyshi.training_recipe_beginers.World.WorldRecipeAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
