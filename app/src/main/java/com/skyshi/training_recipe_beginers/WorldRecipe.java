@@ -1,6 +1,5 @@
 package com.skyshi.training_recipe_beginers;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,7 +19,7 @@ import java.util.List;
 /**
  * Created by skyshi on 18/04/16.
  */
-public class WorldRecipe extends Fragment implements ItemClickListener{
+public class WorldRecipe extends Fragment {
     RecyclerView rv_world_recipe;
     LinearLayoutManager llm_manager;
     WorldRecipeAdapter wra;
@@ -50,33 +49,15 @@ public class WorldRecipe extends Fragment implements ItemClickListener{
         }*/
 
         worldObjectList = dbHandler.getAllWorldRecipe();
-        wra = new WorldRecipeAdapter(worldObjectList,getActivity(),this);
+        wra = new WorldRecipeAdapter(worldObjectList,getActivity());
         rv_world_recipe.setAdapter(wra);
         return root;
     }
     public void refreshListWorld(){
         worldObjectList.clear();
         worldObjectList = dbHandler.getAllWorldRecipe();
-        wra = new WorldRecipeAdapter(worldObjectList,getActivity(),this);
+        wra = new WorldRecipeAdapter(worldObjectList,getActivity());
         rv_world_recipe.setAdapter(wra);
     }
 
-    @Override
-    public void viewItem(String img, String name, String type, String price, String place, String mainIngredient, String ingredient, String tools, String step) {
-        //ViewRecipe viewRecipe = new ViewRecipe();
-        Bundle bundle = new Bundle();
-        bundle.putString("image",img);
-        bundle.putString("name",name);
-        bundle.putString("type",type);
-        bundle.putString("price",price);
-        bundle.putString("place",place);
-        bundle.putString("mainIngredient",mainIngredient);
-        bundle.putString("ingredient",ingredient);
-        bundle.putString("tools",tools);
-        bundle.putString("step", step);
-        //viewRecipe.setArguments(bundle);
-        Intent intent = new Intent(getActivity(),ViewRecipe.class);
-        intent.putExtras(bundle);
-        startActivity(intent);
-    }
 }
