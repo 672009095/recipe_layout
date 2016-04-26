@@ -2,10 +2,7 @@ package com.skyshi.training_recipe_beginers;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,14 +16,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
-import com.bumptech.glide.Glide;
-
-import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by skyshi on 19/04/16.
@@ -46,11 +37,6 @@ public class InputNewRecipe extends AppCompatActivity{
     List<String> listIngredients = new ArrayList<>();
     List<String> listTools = new ArrayList<>();
     String category = "",typeRecipe = "",appetizer = "",maincourse = "",dessert = "";
-
-    private Uri fileUri;
-    private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
-    public static final int MEDIA_TYPE_IMAGE = 1;
-    private static final String IMAGE_DIRECTORY_NAME = "RecipeCamera";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,12 +52,6 @@ public class InputNewRecipe extends AppCompatActivity{
         editText_price = (EditText)findViewById(R.id.edit_price);
         editText_place = (EditText)findViewById(R.id.edit_place);
         img_recipe_photo = (ImageView)findViewById(R.id.img_recipe_photo);
-        img_recipe_photo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                takePicture();
-            }
-        });
 
         radioGroup = (RadioGroup)findViewById(R.id.radio_group);
 
@@ -189,81 +169,11 @@ public class InputNewRecipe extends AppCompatActivity{
                 intent.putExtra("step", editText_step.getText().toString());
                 intent.putExtra("price", editText_price.getText().toString());
                 intent.putExtra("place", editText_place.getText().toString());
-                intent.putExtra("imagepath",fileUri.toString());
                 setResult(Activity.RESULT_OK, intent);
                 finish();
 
             }
         });
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putParcelable("file_uri",fileUri);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        fileUri = savedInstanceState.getParcelable("file_uri");
-    }
-
-    public void takePicture(){
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-        // start the image capture Intent
-        startActivityForResult(intent, CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
-    }
-    public Uri getOutputMediaFileUri(int type){
-        return Uri.fromFile(getOutputMediaFile(type));
-    }
-    private static File getOutputMediaFile(int type){
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),IMAGE_DIRECTORY_NAME);
-        if(!mediaStorageDir.exists()){
-            if(!mediaStorageDir.mkdirs()){
-                return null;
-            }
-        }
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
-        File mediaFile;
-        if(type==MEDIA_TYPE_IMAGE){
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator
-                    + "IMG_" + timeStamp + ".jpg");
-        }else{
-            return null;
-        }
-        return mediaFile;
-    }
-    private void previewCapturedImage(){
-        try {
-            /*BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inSampleSize = 4;
-            final Bitmap bitmap = BitmapFactory.decodeFile(fileUri.getPath(),options);
-            img_recipe_photo.setImageBitmap(bitmap);*/
-            Glide.with(this)
-                    .load(fileUri.getPath())
-                    .fitCenter()
-                    .placeholder(R.drawable.noimage)
-                    .into(img_recipe_photo);
-        }catch (NullPointerException e){
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==CAMERA_CAPTURE_IMAGE_REQUEST_CODE){
-            if(resultCode ==Activity.RESULT_OK){
-                previewCapturedImage();
-            }else if(resultCode ==RESULT_CANCELED){
-                return;
-            }else{
-                return;
-            }
-        }
     }
 
     @Override

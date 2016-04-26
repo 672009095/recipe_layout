@@ -1,6 +1,5 @@
 package com.skyshi.training_recipe_beginers.Local;
 
-import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.skyshi.training_recipe_beginers.R;
 
 import java.util.List;
@@ -18,10 +16,8 @@ import java.util.List;
  */
 public class LocalRecipeAdapter extends RecyclerView.Adapter<LocalRecipeAdapter.ViewHolder>{
     List<LocalObject> localObjectList;
-    Activity act;
-    public  LocalRecipeAdapter(List<LocalObject> localObjectList,Activity act){
+    public  LocalRecipeAdapter(List<LocalObject> localObjectList){
         this.localObjectList = localObjectList;
-        this.act = act;
     }
     @Override
     public LocalRecipeAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -34,10 +30,6 @@ public class LocalRecipeAdapter extends RecyclerView.Adapter<LocalRecipeAdapter.
     public void onBindViewHolder(LocalRecipeAdapter.ViewHolder holder, int position) {
         holder.txt_title_local_recipe.setText(localObjectList.get(position).getName_food());
         holder.txt_description_local_recipe.setText(localObjectList.get(position).getType());
-        Glide.with(act).load(localObjectList.get(position).getImage_name())
-                .fitCenter()
-                .placeholder(R.drawable.noimage)
-                .into(holder.img_local_recipe);
     }
 
     @Override

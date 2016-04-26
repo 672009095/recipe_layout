@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                         data.getStringExtra("step"),
                         data.getStringExtra("price"),
                         data.getStringExtra("place"),
-                        data.getStringExtra("imagepath")
+                        ""
                     ));
                     worldRecipeFragment.refreshListWorld();
                 }else{
@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
                         data.getStringExtra("step"),
                         data.getStringExtra("price"),
                         data.getStringExtra("place"),
-                        data.getStringExtra("imagepath")
+                        ""
                     ));
                     localRecipeFragment.refreshListLocal();
                 }
