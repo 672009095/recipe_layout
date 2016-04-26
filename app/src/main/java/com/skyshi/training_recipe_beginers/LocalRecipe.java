@@ -48,14 +48,14 @@ public class LocalRecipe extends Fragment {
             }
         }*/
         localObjectList = dbHandler.getAllLocalRecipe();
-        lra = new LocalRecipeAdapter(localObjectList,getActivity());
+        lra = new LocalRecipeAdapter(localObjectList);
         rv_local_recipe.setAdapter(lra);
         return view;
     }
     public void refreshListLocal(){
         localObjectList.clear();
         localObjectList = dbHandler.getAllLocalRecipe();
-        lra = new LocalRecipeAdapter(localObjectList,getActivity());
+        lra = new LocalRecipeAdapter(localObjectList);
         rv_local_recipe.setAdapter(lra);
     }
 }
