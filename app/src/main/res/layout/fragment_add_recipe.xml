@@ -8,7 +8,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.skyshi.training_recipe_beginers.InputNewRecipe"
     tools:showIn="@layout/activity_add_recipe">
-
+    <include layout="@layout/input_new_image"/>
     <ScrollView
         android:id="@+id/scroll_input"
         android:layout_width="match_parent"
@@ -17,7 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-                <include layout="@layout/input_new_image"/>
                 <include layout="@layout/input_new_recipename"/>
                 <include layout="@layout/input_new_kategory"/>
                 <include layout="@layout/input_new_type"/>

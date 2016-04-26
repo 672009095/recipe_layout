@@ -24,6 +24,8 @@
             android:name="com.skyshi.training_recipe_beginers.InputNewRecipe"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".ViewRecipe"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

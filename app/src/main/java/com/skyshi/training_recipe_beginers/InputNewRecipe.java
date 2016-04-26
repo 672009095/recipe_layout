@@ -2,11 +2,14 @@ package com.skyshi.training_recipe_beginers;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,6 +23,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -57,11 +61,8 @@ public class InputNewRecipe extends AppCompatActivity{
         setContentView(R.layout.activity_add_recipe);
         nameRecipe = (EditText)findViewById(R.id.edit_name_recipe);
         editText_mainIngredients = (EditText)findViewById(R.id.edit_mainIngredients);
-        editText_mainIngredients.setEnabled(false);
         editText_ingredients = (EditText)findViewById(R.id.edit_ingredients);
-        editText_ingredients.setEnabled(false);
         editText_tools = (EditText)findViewById(R.id.edit_tools);
-        editText_tools.setEnabled(false);
         editText_step = (EditText)findViewById(R.id.edit_step);
         editText_price = (EditText)findViewById(R.id.edit_price);
         editText_place = (EditText)findViewById(R.id.edit_place);
@@ -243,10 +244,17 @@ public class InputNewRecipe extends AppCompatActivity{
             final Bitmap bitmap = BitmapFactory.decodeFile(fileUri.getPath(),options);
             img_recipe_photo.setImageBitmap(bitmap);*/
             Glide.with(this)
-                    .load(fileUri.getPath())
+                    .load(fileUri.getPath()).asBitmap()
                     .fitCenter()
                     .placeholder(R.drawable.noimage)
-                    .into(img_recipe_photo);
+                    .into(new BitmapImageViewTarget(img_recipe_photo){
+                        @Override
+                        protected void setResource(Bitmap resource) {
+                            RoundedBitmapDrawable circleImage = RoundedBitmapDrawableFactory.create(getResources(),resource);
+                            circleImage.setCircular(true);
+                            img_recipe_photo.setImageDrawable(circleImage);
+                        }
+                    });
         }catch (NullPointerException e){
             e.printStackTrace();
         }

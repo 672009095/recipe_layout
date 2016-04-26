@@ -1,6 +1,9 @@
 package com.skyshi.training_recipe_beginers.World;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.skyshi.training_recipe_beginers.ItemClickListener;
 import com.skyshi.training_recipe_beginers.R;
 
@@ -34,13 +38,20 @@ public class WorldRecipeAdapter extends RecyclerView.Adapter<WorldRecipeAdapter.
     }
 
     @Override
-    public void onBindViewHolder(WorldRecipeAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final WorldRecipeAdapter.ViewHolder holder, final int position) {
         holder.txt_title_world_recipe.setText(worldObjectList.get(position).getName_food());
         holder.txt_description_world_recipe.setText(worldObjectList.get(position).getType());
-        Glide.with(act).load(worldObjectList.get(position).getImage_name())
+        Glide.with(act).load(worldObjectList.get(position).getImage_name()).asBitmap()
                 .centerCrop()
                 .placeholder(R.drawable.noimage)
-                .into(holder.img_world_recipe);
+                .into(new BitmapImageViewTarget(holder.img_world_recipe){
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable circleBitmap = RoundedBitmapDrawableFactory.create(act.getResources(),resource);
+                        circleBitmap.setCircular(true);
+                        holder.img_world_recipe.setImageDrawable(circleBitmap);
+                    }
+                });
         holder.img_world_recipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
