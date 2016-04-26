@@ -1,4 +1,4 @@
-package com.skyshi.training_recipe_beginers;
+package com.skyshi.training_recipe_beginers.Local;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.skyshi.training_recipe_beginers.Database.DatabaseHandler;
 import com.skyshi.training_recipe_beginers.Local.LocalObject;
 import com.skyshi.training_recipe_beginers.Local.LocalRecipeAdapter;
+import com.skyshi.training_recipe_beginers.R;
 
 import java.util.ArrayList;
 import java.util.List;

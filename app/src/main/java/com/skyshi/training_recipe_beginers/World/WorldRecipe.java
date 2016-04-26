@@ -1,4 +1,4 @@
-package com.skyshi.training_recipe_beginers;
+package com.skyshi.training_recipe_beginers.World;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.skyshi.training_recipe_beginers.Database.DatabaseHandler;
+import com.skyshi.training_recipe_beginers.ItemClickListener;
+import com.skyshi.training_recipe_beginers.R;
+import com.skyshi.training_recipe_beginers.ViewRecipe;
 import com.skyshi.training_recipe_beginers.World.WorldObject;
 import com.skyshi.training_recipe_beginers.World.WorldRecipeAdapter;
 
@@ -20,7 +23,7 @@ import java.util.List;
 /**
  * Created by skyshi on 18/04/16.
  */
-public class WorldRecipe extends Fragment implements ItemClickListener{
+public class WorldRecipe extends Fragment implements ItemClickListener {
     RecyclerView rv_world_recipe;
     LinearLayoutManager llm_manager;
     WorldRecipeAdapter wra;
