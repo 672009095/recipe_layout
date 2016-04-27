@@ -24,6 +24,7 @@ import android.widget.Spinner;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.skyshi.training_recipe_beginers.Database.DatabaseHandler;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -44,7 +45,7 @@ public class InputNewRecipe extends AppCompatActivity{
     CheckBox checkBoxAppetizer,checkBoxMaincourse,checkBoxDessert;
     Spinner spinner_mainIngredients,spinner_ingredients,spinner_tools;
     ArrayAdapter<CharSequence> adapterMainIngredient,adapterIngredient,adapterTools;
-    FloatingActionButton fab_input_recipe;
+    FloatingActionButton fab_input_recipe,fab_confirm_editRecipe;
     private static final int CODE_ADD = 90;
     List<String> listMainIngredient = new ArrayList<>();
     List<String> listIngredients = new ArrayList<>();
@@ -55,11 +56,16 @@ public class InputNewRecipe extends AppCompatActivity{
     private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
     public static final int MEDIA_TYPE_IMAGE = 1;
     private static final String IMAGE_DIRECTORY_NAME = "RecipeCamera";
+    Bundle bundleEdit;
+    DatabaseHandler db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
+        bundleEdit = getIntent().getExtras();
         nameRecipe = (EditText)findViewById(R.id.edit_name_recipe);
+        fab_input_recipe = (FloatingActionButton)findViewById(R.id.fab_submit_recipe);
+        fab_confirm_editRecipe = (FloatingActionButton)findViewById(R.id.fab_confirm_editrecipe);
         editText_mainIngredients = (EditText)findViewById(R.id.edit_mainIngredients);
         editText_ingredients = (EditText)findViewById(R.id.edit_ingredients);
         editText_tools = (EditText)findViewById(R.id.edit_tools);
@@ -164,8 +170,44 @@ public class InputNewRecipe extends AppCompatActivity{
 
             }
         });
-
-        fab_input_recipe = (FloatingActionButton)findViewById(R.id.fab_submit_recipe);
+        if(bundleEdit!=null){
+            nameRecipe.setText(bundleEdit.getString("name"));
+            editText_mainIngredients.setText(bundleEdit.getString("mainIngredient"));
+            editText_ingredients.setText(bundleEdit.getString("ingredient"));
+            editText_tools.setText(bundleEdit.getString("tools"));
+            editText_place.setText(bundleEdit.getString("place"));
+            editText_step.setText(bundleEdit.getString("step"));
+            editText_price.setText(bundleEdit.getString("price"));
+            if(bundleEdit.getString("type").contains("Appetizer")){
+                checkBoxAppetizer.setChecked(true);
+            }
+            else if(bundleEdit.getString("type").contains("main")){
+                checkBoxMaincourse.setChecked(true);
+            }
+            else if(bundleEdit.getString("type").contains("dessert")){
+                checkBoxDessert.setChecked(true);
+            }
+            if(bundleEdit.getString("kategory").equalsIgnoreCase("world")){
+                radioGroup.check(R.id.radio_world);
+            }else{
+                radioGroup.check(R.id.radio_local);
+            }
+            Glide.with(this).load(bundleEdit.getString("image"))
+                    .asBitmap()
+                    .centerCrop()
+                    .placeholder(R.drawable.noimage)
+                    .into(new BitmapImageViewTarget(img_recipe_photo) {
+                        @Override
+                        protected void setResource(Bitmap resource) {
+                            RoundedBitmapDrawable roundedCircle = RoundedBitmapDrawableFactory.create(getResources(), resource);
+                            roundedCircle.setCircular(true);
+                            img_recipe_photo.setImageDrawable(roundedCircle);
+                        }
+                    });
+            fileUri = Uri.parse(bundleEdit.getString("image"));
+            fab_input_recipe.setVisibility(View.GONE);
+            fab_confirm_editRecipe.setVisibility(View.VISIBLE);
+        }
         fab_input_recipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -194,6 +236,36 @@ public class InputNewRecipe extends AppCompatActivity{
                 setResult(Activity.RESULT_OK, intent);
                 finish();
 
+            }
+        });
+        fab_confirm_editRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                typeRecipe = appetizer+" "+maincourse+" "+dessert;
+                if(typeRecipe.substring(typeRecipe.length()-1).equalsIgnoreCase(" ")) {
+                    typeRecipe = typeRecipe.substring(0, typeRecipe.length() - 1);
+                }
+                int selectedCategory = radioGroup.getCheckedRadioButtonId();
+                radioButton = (RadioButton)findViewById(selectedCategory);
+                if(radioButton.getText().toString().equalsIgnoreCase("World")){
+                    category = radioButton.getText().toString();
+                }else{
+                    category = radioButton.getText().toString();
+                }
+                Intent edited = new Intent();
+                edited.putExtra("namerecipe", nameRecipe.getText().toString());
+                edited.putExtra("category", category);
+                edited.putExtra("type", typeRecipe);
+                edited.putExtra("mainingredient", editText_mainIngredients.getText().toString().trim());
+                edited.putExtra("ingredient", editText_ingredients.getText().toString().trim());
+                edited.putExtra("tools", editText_tools.getText().toString().trim());
+                edited.putExtra("step", editText_step.getText().toString());
+                edited.putExtra("price", editText_price.getText().toString());
+                edited.putExtra("place", editText_place.getText().toString());
+                edited.putExtra("imagepath",fileUri.toString());
+                edited.putExtra("id",bundleEdit.getInt("id"));
+                setResult(Activity.RESULT_OK,edited);
+                finish();
             }
         });
     }

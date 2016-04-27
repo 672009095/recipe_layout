@@ -49,9 +49,7 @@ public class LocalRecipe extends Fragment implements ItemClickListener{
                 localObjectList.add(new LocalObject(3, "sapi panggang", "fast food", "bulu babi", "bawang", "wajan", "digoreng", "10000", "china", ""));
             }
         }*/
-        localObjectList = dbHandler.getAllLocalRecipe();
-        lra = new LocalRecipeAdapter(localObjectList,getActivity(),this);
-        rv_local_recipe.setAdapter(lra);
+        refreshListLocal();
         return view;
     }
     public void refreshListLocal(){
@@ -62,7 +60,7 @@ public class LocalRecipe extends Fragment implements ItemClickListener{
     }
 
     @Override
-    public void viewItem(String img, String name, String type, String price, String place, String mainIngredient, String ingredient, String tools, String step) {
+    public void viewItem(int id,String img, String name, String type, String price, String place, String mainIngredient, String ingredient, String tools, String step) {
         Bundle bundle = new Bundle();
         bundle.putString("image",img);
         bundle.putString("name",name);
@@ -73,6 +71,8 @@ public class LocalRecipe extends Fragment implements ItemClickListener{
         bundle.putString("ingredient",ingredient);
         bundle.putString("tools", tools);
         bundle.putString("step", step);
+        bundle.putString("kategory","local");
+        bundle.putInt("id",id);
         //viewRecipe.setArguments(bundle);
         Log.d("data", "image : " + img);
         Log.d("data", "name : " + name);

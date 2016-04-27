@@ -19,6 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/tool" />
+        android:src="@drawable/tool"
+        app:layout_behavior="com.skyshi.training_recipe_beginers.FAB_floatOnScroll"
+        />
     <include layout="@layout/fab_layout"/>
 </android.support.design.widget.CoordinatorLayout>

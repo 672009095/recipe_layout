@@ -56,6 +56,7 @@ public class LocalRecipeAdapter extends RecyclerView.Adapter<LocalRecipeAdapter.
             @Override
             public void onClick(View view) {
                 listener.viewItem(
+                        localObjectList.get(position).getId(),
                         localObjectList.get(position).getImage_name(),
                         localObjectList.get(position).getName_food(),
                         localObjectList.get(position).getType(),

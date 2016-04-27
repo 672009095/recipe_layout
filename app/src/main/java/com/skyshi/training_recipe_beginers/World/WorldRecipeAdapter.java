@@ -56,6 +56,7 @@ public class WorldRecipeAdapter extends RecyclerView.Adapter<WorldRecipeAdapter.
             @Override
             public void onClick(View view) {
                 listener.viewItem(
+                        worldObjectList.get(position).getId(),
                         worldObjectList.get(position).getImage_name(),
                         worldObjectList.get(position).getName_food(),
                         worldObjectList.get(position).getType(),

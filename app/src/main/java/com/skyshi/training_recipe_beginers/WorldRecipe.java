@@ -24,9 +24,9 @@ import java.util.List;
 public class WorldRecipe extends Fragment implements ItemClickListener{
     RecyclerView rv_world_recipe;
     LinearLayoutManager llm_manager;
-    WorldRecipeAdapter wra;
-    List<WorldObject> worldObjectList= new ArrayList<>();
-    DatabaseHandler dbHandler;
+    public WorldRecipeAdapter wra;
+    public List<WorldObject> worldObjectList= new ArrayList<>();
+    public DatabaseHandler dbHandler;
     public WorldRecipe(){}
 
     @Override
@@ -49,13 +49,11 @@ public class WorldRecipe extends Fragment implements ItemClickListener{
                 dbHandler.addWorldRecipe(new WorldObject(1, "bulu babi bakar", "fast food", "bulu babi", "bawang", "wajan", "dibakar", "10000", "japan", ""));
             }
         }*/
-
-        worldObjectList = dbHandler.getAllWorldRecipe();
-        wra = new WorldRecipeAdapter(worldObjectList,getActivity(),this);
-        rv_world_recipe.setAdapter(wra);
+        refreshListWorld();
         return root;
     }
     public void refreshListWorld(){
+        //DatabaseHandler dbHandler = new DatabaseHandler(getActivity());
         worldObjectList.clear();
         worldObjectList = dbHandler.getAllWorldRecipe();
         wra = new WorldRecipeAdapter(worldObjectList,getActivity(),this);
@@ -63,7 +61,7 @@ public class WorldRecipe extends Fragment implements ItemClickListener{
     }
 
     @Override
-    public void viewItem(String img, String name, String type, String price, String place, String mainIngredient, String ingredient, String tools, String step) {
+    public void viewItem(int id,String img, String name, String type, String price, String place, String mainIngredient, String ingredient, String tools, String step) {
         //ViewRecipe viewRecipe = new ViewRecipe();
         Bundle bundle = new Bundle();
         bundle.putString("image",img);
@@ -75,6 +73,8 @@ public class WorldRecipe extends Fragment implements ItemClickListener{
         bundle.putString("ingredient",ingredient);
         bundle.putString("tools", tools);
         bundle.putString("step", step);
+        bundle.putString("kategory","world");
+        bundle.putInt("id", id);
         //viewRecipe.setArguments(bundle);
         Log.d("data", "image : " + img);
         Log.d("data", "name : " + name);
