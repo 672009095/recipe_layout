@@ -4,47 +4,56 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <include layout="@layout/view_recipe_header"/>
-    <TextView
-        style="@style/TextHeaderViewRecipe"
-        android:text="Type"/>
-        <TextView
-            android:id="@+id/txt_view_type"
-            style="@style/TextContentViewRecipe" />
-    <TextView
-        style="@style/TextHeaderViewRecipe"
-        android:text="price"/>
-        <TextView
-            android:id="@+id/txt_view_price"
-            style="@style/TextContentViewRecipe" />
-    <TextView
-        style="@style/TextHeaderViewRecipe"
-        android:text="place"/>
-        <TextView
-            android:id="@+id/txt_view_place"
-            style="@style/TextContentViewRecipe" />
-    <TextView
-        style="@style/TextHeaderViewRecipe"
-        android:text="main ingredients"/>
-        <TextView
-            android:id="@+id/txt_view_mainingredients"
-            style="@style/TextContentViewRecipe" />
-    <TextView
-        style="@style/TextHeaderViewRecipe"
-        android:text="ingredients"/>
-        <TextView
-            android:id="@+id/txt_view_ingredients"
-            style="@style/TextContentViewRecipe" />
-    <TextView
-        style="@style/TextHeaderViewRecipe"
-        android:text="Tools"/>
-        <TextView
-            android:id="@+id/txt_view_tools"
-            style="@style/TextContentViewRecipe" />
-    <TextView
-        style="@style/TextHeaderViewRecipe"
-        android:text="step"/>
-        <TextView
-            android:id="@+id/txt_view_step"
-            style="@style/TextContentViewRecipe" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+                <TextView
+                    style="@style/TextHeaderViewRecipe"
+                    android:text="Type"/>
+                    <TextView
+                        android:id="@+id/txt_view_type"
+                        style="@style/TextContentViewRecipe" />
+                <TextView
+                    style="@style/TextHeaderViewRecipe"
+                    android:text="price"/>
+                    <TextView
+                        android:id="@+id/txt_view_price"
+                        style="@style/TextContentViewRecipe" />
+                <TextView
+                    style="@style/TextHeaderViewRecipe"
+                    android:text="place"/>
+                    <TextView
+                        android:id="@+id/txt_view_place"
+                        style="@style/TextContentViewRecipe" />
+                <TextView
+                    style="@style/TextHeaderViewRecipe"
+                    android:text="main ingredients"/>
+                    <TextView
+                        android:id="@+id/txt_view_mainingredients"
+                        style="@style/TextContentViewRecipe" />
+                <TextView
+                    style="@style/TextHeaderViewRecipe"
+                    android:text="ingredients"/>
+                    <TextView
+                        android:id="@+id/txt_view_ingredients"
+                        style="@style/TextContentViewRecipe" />
+                <TextView
+                    style="@style/TextHeaderViewRecipe"
+                    android:text="Tools"/>
+                    <TextView
+                        android:id="@+id/txt_view_tools"
+                        style="@style/TextContentViewRecipe" />
+                <TextView
+                    style="@style/TextHeaderViewRecipe"
+                    android:text="step"/>
+                    <TextView
+                        android:id="@+id/txt_view_step"
+                        style="@style/TextContentViewRecipe" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

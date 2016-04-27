@@ -12,4 +12,6 @@
     <string name="hint_price">input price</string>
     <string name="submit_recipe">Submit</string>
     <string name="hint_place">input place resource recipe</string>
+    <string name="edit">Edit</string>
+    <string name="share">Share</string>
 </resources>

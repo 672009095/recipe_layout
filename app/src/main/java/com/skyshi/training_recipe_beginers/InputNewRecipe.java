@@ -245,7 +245,7 @@ public class InputNewRecipe extends AppCompatActivity{
             img_recipe_photo.setImageBitmap(bitmap);*/
             Glide.with(this)
                     .load(fileUri.getPath()).asBitmap()
-                    .fitCenter()
+                    .centerCrop()
                     .placeholder(R.drawable.noimage)
                     .into(new BitmapImageViewTarget(img_recipe_photo){
                         @Override
