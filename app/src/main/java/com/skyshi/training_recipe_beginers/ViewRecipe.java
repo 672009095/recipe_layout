@@ -51,7 +51,8 @@ public class ViewRecipe extends AppCompatActivity{
     Animation hide_fab_3;
     Bundle bundle;
     DatabaseHandler db;
-
+    public LocalRecipe localRecipeFragment;
+    public WorldRecipe worldRecipeFragment;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -233,7 +234,7 @@ public class ViewRecipe extends AppCompatActivity{
                             data.getStringExtra("place"),
                             data.getStringExtra("imagepath")
                     ));
-                    //worldRecipeFragment.refreshListWorld();
+
                 }else{
                     db.updateLocaldRecipe(new LocalObject(
                             data.getIntExtra("id", 0),
@@ -247,7 +248,7 @@ public class ViewRecipe extends AppCompatActivity{
                             data.getStringExtra("place"),
                             data.getStringExtra("imagepath")
                     ));
-                    //localRecipeFragment.refreshListLocal();
+
                 }
                 txt_view_namerecipe.setText(data.getStringExtra("namerecipe"));
                 txt_view_type.setText(data.getStringExtra("type"));
@@ -275,4 +276,10 @@ public class ViewRecipe extends AppCompatActivity{
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent a  = new Intent(ViewRecipe.this,MainActivity.class);
+        startActivity(a);
+        finish();
+    }
 }

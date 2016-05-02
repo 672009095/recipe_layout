@@ -181,10 +181,10 @@ public class InputNewRecipe extends AppCompatActivity{
             if(bundleEdit.getString("type").contains("Appetizer")){
                 checkBoxAppetizer.setChecked(true);
             }
-            else if(bundleEdit.getString("type").contains("main")){
+            if(bundleEdit.getString("type").contains("Main")){
                 checkBoxMaincourse.setChecked(true);
             }
-            else if(bundleEdit.getString("type").contains("dessert")){
+            if(bundleEdit.getString("type").contains("Dessert")){
                 checkBoxDessert.setChecked(true);
             }
             if(bundleEdit.getString("kategory").equalsIgnoreCase("world")){

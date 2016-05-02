@@ -10,14 +10,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.RelativeLayout;
 
 import com.skyshi.training_recipe_beginers.Database.DatabaseHandler;
 import com.skyshi.training_recipe_beginers.Local.LocalObject;
@@ -27,9 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    DrawerLayout mDrawerLayout;
-    RelativeLayout rel_menuleft,rel_main;
-    ActionBarDrawerToggle mDrawerToogle;
     TabLayout tabLayout ;
     ViewPager viewPager;
     private static final int CODE_ADD = 90;
@@ -42,10 +35,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         if (fab != null) {
@@ -58,11 +47,10 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        mDrawerLayout = (DrawerLayout)findViewById(R.id.mDrawer);
-        rel_main = (RelativeLayout)findViewById(R.id.rel_mainCenter);
-        rel_menuleft = (RelativeLayout)findViewById(R.id.rel_menuLeft);
 
-        setNavigationBar();
+        //rel_menuleft = (NavigationView)findViewById(R.id.rel_menuLeft);
+
+        //setNavigationBar();
 
         viewPager = (ViewPager)findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -92,58 +80,19 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-        if(mDrawerToogle.onOptionsItemSelected(item)){
-            if(mDrawerLayout.isDrawerVisible(rel_menuleft)){
-                mDrawerLayout.closeDrawer(rel_menuleft);
-            }else{
-                mDrawerLayout.openDrawer(rel_menuleft);
-            }
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        mDrawerToogle.onConfigurationChanged(newConfig);
     }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        mDrawerToogle.syncState();
     }
 
-    public void setNavigationBar(){
-        mDrawerToogle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.app_name,R.string.app_name){
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                //super.onDrawerClosed(drawerView);
-                mDrawerLayout.closeDrawer(rel_menuleft);
-                supportInvalidateOptionsMenu();
-                mDrawerToogle.syncState();
-            }
-
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                //super.onDrawerOpened(drawerView);
-                mDrawerLayout.openDrawer(rel_menuleft);
-                supportInvalidateOptionsMenu();
-                mDrawerToogle.syncState();
-            }
-
-            @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-                super.onDrawerSlide(rel_menuleft, slideOffset);
-                mDrawerLayout.setTranslationX(slideOffset * rel_menuleft.getWidth());
-                mDrawerLayout.bringChildToFront(rel_menuleft);
-                mDrawerLayout.requestLayout();
-            }
-        };
-        mDrawerToogle.setDrawerIndicatorEnabled(true);
-        mDrawerLayout.addDrawerListener(mDrawerToogle);
-    }
     private void setupViewPager(ViewPager viewPager){
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new WorldRecipe(),"World");

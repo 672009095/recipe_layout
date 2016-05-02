@@ -53,7 +53,6 @@ public class WorldRecipe extends Fragment implements ItemClickListener{
         return root;
     }
     public void refreshListWorld(){
-        //DatabaseHandler dbHandler = new DatabaseHandler(getActivity());
         worldObjectList.clear();
         worldObjectList = dbHandler.getAllWorldRecipe();
         wra = new WorldRecipeAdapter(worldObjectList,getActivity(),this);
@@ -88,5 +87,6 @@ public class WorldRecipe extends Fragment implements ItemClickListener{
         Intent intent = new Intent(getActivity(),ViewRecipe.class);
         intent.putExtras(bundle);
         startActivity(intent);
+        getActivity().finish();
     }
 }
