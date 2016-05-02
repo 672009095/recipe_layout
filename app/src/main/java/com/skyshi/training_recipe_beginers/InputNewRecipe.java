@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
@@ -211,31 +212,37 @@ public class InputNewRecipe extends AppCompatActivity{
         fab_input_recipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                typeRecipe = appetizer+" "+maincourse+" "+dessert;
-                if(typeRecipe.substring(typeRecipe.length()-1).equalsIgnoreCase(" ")) {
-                    typeRecipe = typeRecipe.substring(0, typeRecipe.length() - 1);
-                }
-                int selectedCategory = radioGroup.getCheckedRadioButtonId();
-                radioButton = (RadioButton)findViewById(selectedCategory);
-                if(radioButton.getText().toString().equalsIgnoreCase("World")){
-                    category = radioButton.getText().toString();
+                if(!nameRecipe.getText().toString().equalsIgnoreCase("") &&
+                        !fileUri.toString().equalsIgnoreCase("")) {
+                    typeRecipe = appetizer + " " + maincourse + " " + dessert;
+                    if (typeRecipe.substring(typeRecipe.length() - 1).equalsIgnoreCase(" ")) {
+                        typeRecipe = typeRecipe.substring(0, typeRecipe.length() - 1);
+                    }
+                    int selectedCategory = radioGroup.getCheckedRadioButtonId();
+                    radioButton = (RadioButton) findViewById(selectedCategory);
+                    if (radioButton.getText().toString().equalsIgnoreCase("World")) {
+                        category = radioButton.getText().toString();
+                    } else {
+                        category = radioButton.getText().toString();
+                    }
+                    Intent intent = new Intent();
+                    intent.putExtra("namerecipe", nameRecipe.getText().toString());
+                    intent.putExtra("category", category);
+                    intent.putExtra("type", typeRecipe);
+                    intent.putExtra("mainingredient", editText_mainIngredients.getText().toString().trim());
+                    intent.putExtra("ingredient", editText_ingredients.getText().toString().trim());
+                    intent.putExtra("tools", editText_tools.getText().toString().trim());
+                    intent.putExtra("step", editText_step.getText().toString());
+                    intent.putExtra("price", editText_price.getText().toString());
+                    intent.putExtra("place", editText_place.getText().toString());
+                    intent.putExtra("imagepath", fileUri.toString());
+                    setResult(Activity.RESULT_OK, intent);
+                    finish();
+                }else if(fileUri==null){
+                    Toast.makeText(InputNewRecipe.this,"picture recipe can't be empty",Toast.LENGTH_SHORT).show();
                 }else{
-                    category = radioButton.getText().toString();
+                    Toast.makeText(InputNewRecipe.this,"name recipe can't be empty",Toast.LENGTH_SHORT).show();
                 }
-                Intent intent= new Intent();
-                intent.putExtra("namerecipe", nameRecipe.getText().toString());
-                intent.putExtra("category", category);
-                intent.putExtra("type", typeRecipe);
-                intent.putExtra("mainingredient", editText_mainIngredients.getText().toString().trim());
-                intent.putExtra("ingredient", editText_ingredients.getText().toString().trim());
-                intent.putExtra("tools", editText_tools.getText().toString().trim());
-                intent.putExtra("step", editText_step.getText().toString());
-                intent.putExtra("price", editText_price.getText().toString());
-                intent.putExtra("place", editText_place.getText().toString());
-                intent.putExtra("imagepath",fileUri.toString());
-                setResult(Activity.RESULT_OK, intent);
-                finish();
-
             }
         });
         fab_confirm_editRecipe.setOnClickListener(new View.OnClickListener() {
