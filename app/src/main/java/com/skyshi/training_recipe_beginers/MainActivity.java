@@ -103,12 +103,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
     }
-    public void refreshWorld(){
-        worldRecipeFragment.refreshListWorld();
-    }
-    public void refreshLocal(){
-        localRecipeFragment.refreshListLocal();
-    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -128,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                         data.getStringExtra("place"),
                         data.getStringExtra("imagepath")
                     ));
-                    refreshWorld();
+                    worldRecipeFragment.refreshListWorld();
                 }else{
                     db.addLocalRecipe(new LocalObject(
                         0,
@@ -142,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                         data.getStringExtra("place"),
                         data.getStringExtra("imagepath")
                     ));
-                    refreshLocal();
+                    localRecipeFragment.refreshListLocal();
                 }
             }else{
                 return;

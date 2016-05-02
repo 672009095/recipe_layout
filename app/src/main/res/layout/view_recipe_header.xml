@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
     <View
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
+        android:layout_height="230dp"
         android:background="@color/colorPrimary"/>
     <TextView
         android:id="@+id/txt_view_title"
@@ -13,14 +13,48 @@
         android:text="Title"
         android:textColor="@color/white"
         android:textSize="12pt"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/txt_1"
+        android:layout_below="@id/txt_view_title"
+        style="@style/TextHeaderViewRecipeWhite"
+        android:layout_marginLeft="20dp"
+        android:text="Type"/>
+    <TextView
+        android:id="@+id/txt_view_type"
+        android:layout_below="@id/txt_1"
+        style="@style/TextContentViewRecipeWhite"
+        android:layout_marginLeft="20dp"/>
+    <TextView
+        android:id="@+id/txt_2"
+        android:layout_below="@id/txt_view_type"
+        style="@style/TextHeaderViewRecipeWhite"
+        android:text="price"
+        android:layout_marginLeft="20dp"/>
+    <TextView
+        android:id="@+id/txt_view_price"
+        android:layout_below="@id/txt_2"
+        style="@style/TextContentViewRecipeWhite"
+        android:layout_marginLeft="20dp"/>
+    <TextView
+        android:id="@+id/txt_3"
+        android:layout_below="@id/txt_view_price"
+        style="@style/TextHeaderViewRecipeWhite"
+        android:text="place"
+        android:layout_marginLeft="20dp"/>
+    <TextView
+        android:layout_below="@id/txt_3"
+        android:id="@+id/txt_view_place"
+        style="@style/TextContentViewRecipeWhite"
+        android:layout_marginLeft="20dp"/>
     <ImageView
         android:id="@+id/img_view_recipe"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:src="@drawable/noimage"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
         android:layout_below="@id/txt_view_title"/>
 </RelativeLayout>

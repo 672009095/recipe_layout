@@ -14,24 +14,7 @@
             android:layout_height="match_parent"
             android:padding="5dp"
             android:orientation="vertical">
-                <TextView
-                    style="@style/TextHeaderViewRecipe"
-                    android:text="Type"/>
-                    <TextView
-                        android:id="@+id/txt_view_type"
-                        style="@style/TextContentViewRecipe" />
-                <TextView
-                    style="@style/TextHeaderViewRecipe"
-                    android:text="price"/>
-                    <TextView
-                        android:id="@+id/txt_view_price"
-                        style="@style/TextContentViewRecipe" />
-                <TextView
-                    style="@style/TextHeaderViewRecipe"
-                    android:text="place"/>
-                    <TextView
-                        android:id="@+id/txt_view_place"
-                        style="@style/TextContentViewRecipe" />
+
                 <TextView
                     style="@style/TextHeaderViewRecipe"
                     android:text="main ingredients"/>
