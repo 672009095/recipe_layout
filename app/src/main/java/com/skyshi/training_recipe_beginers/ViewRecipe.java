@@ -120,6 +120,41 @@ public class ViewRecipe extends AppCompatActivity{
                 startActivityForResult(intent, 404);
             }
         });
+        fab3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(bundle.getString("kategory").equalsIgnoreCase("world")){
+                    db.deleteWorldRecipe(new WorldObject(
+                            bundle.getInt("id"),
+                            txt_view_namerecipe.getText().toString(),
+                            txt_view_type.getText().toString(),
+                            txt_view_mainIngredient.getText().toString(),
+                            txt_view_ingredient.getText().toString(),
+                            txt_view_tools.getText().toString(),
+                            txt_view_step.getText().toString(),
+                            txt_view_price.getText().toString(),
+                            txt_view_place.getText().toString(),
+                            bundle.getString("image")
+                    ));
+                }else{
+                    db.deleteLocaldRecipe(new LocalObject(
+                            bundle.getInt("id"),
+                            txt_view_namerecipe.getText().toString(),
+                            txt_view_type.getText().toString(),
+                            txt_view_mainIngredient.getText().toString(),
+                            txt_view_ingredient.getText().toString(),
+                            txt_view_tools.getText().toString(),
+                            txt_view_step.getText().toString(),
+                            txt_view_price.getText().toString(),
+                            txt_view_place.getText().toString(),
+                            bundle.getString("image")
+                    ));
+                }
+                Intent a  = new Intent(ViewRecipe.this,MainActivity.class);
+                startActivity(a);
+                finish();
+            }
+        });
 
         //Animations
         show_fab_1 = AnimationUtils.loadAnimation(getApplication(), R.anim.fab_show);
